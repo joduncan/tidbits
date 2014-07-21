@@ -1,4 +1,4 @@
 require 'primes'
-require 'eratosthenes'
+require 'atkin'
 
 Primes.find(2000000).inject(:+)
