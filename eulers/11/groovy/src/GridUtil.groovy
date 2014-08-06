@@ -6,8 +6,8 @@ class GridUtil {
     // but making it work for rectangular grids shouldn't be difficult.
     // I just don't care about that... yet.
     def line_coord_groups(horiz, vert, line_length) {
-        vert_lines(horiz, vert, length) + horiz_lines(horiz, vert, length) +
-            forward_slashies(horiz, vert, length) + back_slashies(horiz, vert, length)
+        vert_lines(horiz, vert, line_length) + horiz_lines(horiz, vert, line_length) +
+            forward_slashies(horiz, vert, line_length) + back_slashies(horiz, vert, line_length)
     }
 
     def vert_lines(horiz, vert, length) {

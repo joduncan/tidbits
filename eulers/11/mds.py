@@ -8,11 +8,11 @@ def read_file(filename):
 	with open(filename, 'r') as fp:
 		return fp.read()
 
-def build_array(filename)
+def build_array(filename):
 	file_contents = read_file(filename)
 	file_array = []
 	for line in file_contents.split('\n'):
-		file_array.push( [ int(x) for x in line.split() ] )
+		file_array.append( [ int(x) for x in line.split() ] )
 	return file_array
 
 def to_ruby(variable_name, filename):
@@ -23,11 +23,21 @@ def to_ruby(variable_name, filename):
 	for sublist in internal_rep:
 		print "["
 		for item in sublist:
-			print item, ","
+			print str(item)+","
 		print "],\n"
 	print "]\n"
 
 def to_erlang(variable_name, filename):
 	# minor optimization: read the file only once. future TODO.
 	internal_rep = build_array(filename)
+	# FIXME: finish this function.
 
+# wow, it feels like this script is becoming mostly redundant.
+def to_groovy(variable_name, filename):
+	internal_rep = build_array(filename)
+	print "def ", variable_name, "= ["
+	for sublist in internal_rep:
+		print str(sublist)+","
+	print "]"
+
+to_groovy("number_grid", "numbers.txt")
