@@ -45,7 +45,18 @@ class LatticeTest extends GroovyTestCase {
     void test_constructor() {
         test_lattice_creation(2, 2, [LatticeDirection.RIGHT])
         test_lattice_creation(3, 3, [LatticeDirection.LEFT, LatticeDirection.DOWN])
-//        test_lattice_creation(2, 2, [LatticeDirection.RIGHT])
-//        test_lattice_creation(2, 2, [LatticeDirection.RIGHT])
+        test_lattice_creation(4, 4, [LatticeDirection.RIGHT, LatticeDirection.DOWN])
+        test_lattice_creation(40, 40, [LatticeDirection.UP])
+        test_lattice_creation(10, 20, [LatticeDirection.UP, LatticeDirection.DOWN,
+                                       LatticeDirection.LEFT, LatticeDirection.RIGHT])
     }
+
+    void test_breadth_first_find_all_paths() {
+        assert true == false
+    }
+
+    void test_depth_first_find_all_paths() {
+        assert true == false
+    }
+
 }
