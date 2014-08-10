@@ -77,32 +77,42 @@ class Lattice {
             return null
     }
 
-    def breadth_first_find_all_paths(start_node, end_node) {
+    // kinda wish IDEA was smart enough to figure out that start_node and end_node
+    // are LatticeNodes
+    def breadth_first_exhaustive_path_search(LatticeNode start_node, LatticeNode end_node) {
         if (! includes(start_node) || ! includes(end_node))
             return []
+//        else if(start_node == end_node)
+//            return [start_node]
 
-        def (start_x, start_y) = find(start_node)
         def paths = []
-        for (x in start_x..<node_array.size()) {
-            for (y in start_y..<node_array[0].size()) {
-                // BFS goes here, dude-ah.
+
+        // here's a slightly more type-strict way of setting the pending nodes list.
+//        LatticeNode[] possible_paths = start_node.descendants
+        def possible_paths = [start_node]
+
+        while(possible_paths.size() > 0) {
+            List<LatticeNode> current_path = possible_paths.remove(0)
+
+            if (current_path.last() == end_node)
+                paths.push(current_path)
+            else {
+                possible_paths += current_path.last().descendants.collect { current_path + it }
             }
         }
+
         return paths
     }
 
-    def depth_first_find_all_paths(start_node, end_node) {
+    def depth_first_exhaustive_path_search(start_node, end_node) {
         if (! includes(start_node) || ! includes(end_node))
             return []
 
-        def (start_x, start_y) = find(start_node)
         def paths = []
-        for (x in start_x..<node_array.size()) {
-            for (y in start_y..<node_array[0].size()) {
-                // DFS goes here, dude-ah.
+        // here's a slightly more type-strict way of setting the pending nodes list.
+//        LatticeNode[] possible_paths = start_node.descendants
+        def possible_paths = [start_node]
 
-            }
-        }
         return paths
     }
 }
