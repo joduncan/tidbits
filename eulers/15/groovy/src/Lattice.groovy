@@ -87,14 +87,14 @@ class Lattice {
 
         def paths = []
 
-        // here's a slightly more type-strict way of setting the pending nodes list.
-//        LatticeNode[] possible_paths = start_node.descendants
-        def possible_paths = [start_node]
+        // each "item" in the queue needs to be a list of nodes comprising the path through the lattice.
+        def possible_paths = [[start_node]]
 
         while(possible_paths.size() > 0) {
             List<LatticeNode> current_path = possible_paths.remove(0)
 
             if (current_path.last() == end_node)
+                // no need to keep looking at more nodes beyond this one, we found the end-point of our path.
                 paths.push(current_path)
             else {
                 possible_paths += current_path.last().descendants.collect { current_path + it }
@@ -109,9 +109,19 @@ class Lattice {
             return []
 
         def paths = []
-        // here's a slightly more type-strict way of setting the pending nodes list.
-//        LatticeNode[] possible_paths = start_node.descendants
-        def possible_paths = [start_node]
+        // each "item" in the queue needs to be a list of nodes comprising the path through the lattice.
+        def possible_paths = [[start_node]]
+
+        while(possible_paths.size() > 0) {
+            List<LatticeNode> current_path = possible_paths.pop()
+
+            if (current_path.last() == end_node)
+            // no need to keep looking at more nodes beyond this one, we found the end-point of our path.
+                paths.push(current_path)
+            else {
+                possible_paths += current_path.last().descendants.collect { current_path + it }
+            }
+        }
 
         return paths
     }

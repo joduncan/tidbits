@@ -51,11 +51,11 @@ class LatticeTest extends GroovyTestCase {
                                        LatticeDirection.LEFT, LatticeDirection.RIGHT])
     }
 
-    void test_breadth_first_find_all_paths() {
+    void test_breadth_first_exhaustive_path_search() {
         assert true == false
     }
 
-    void test_depth_first_find_all_paths() {
+    void test_depth_first_exhaustive_path_search() {
         assert true == false
     }
 
