@@ -125,4 +125,28 @@ class Lattice {
 
         return paths
     }
+
+    def factorial_down_to(big, little) {
+        BigDecimal result = 1
+        for (num in little+1..big) {
+            result*=num
+        }
+        return result
+    }
+
+    def factorial(limit) {
+        BigDecimal result=1
+        for (num in 1..limit) {
+            result*=num
+        }
+        return result
+    }
+
+    // this is very rudimentary.
+    def binomial_coefficient() {
+        def edge_length = lattice_width+lattice_height
+        BigDecimal numerator = factorial_down_to(edge_length, lattice_width)
+        println numerator/(factorial(lattice_width)*factorial(lattice_width))
+        println numerator/(factorial(lattice_width))
+    }
 }
