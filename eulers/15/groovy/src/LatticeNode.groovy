@@ -16,4 +16,6 @@ class LatticeNode {
         descendants = node_descendants
     }
 //    def add_descendant(new_descendant) { descendants << new_descendant }
+
+    String toString() { name }
 }
