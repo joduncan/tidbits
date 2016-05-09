@@ -28,6 +28,21 @@ def replace_point(matrix, row, col, new_value)
   return old_value
 end
 
+# step 1 in further optimization. flatten each ring into the values.
+def get_array(matrix, list)
+  return list.map { |y,x| matrix[y][x] }
+end
+
+# step 2 in further optimization. swap the two halfs of the ring.
+def shuffle_array(array, offset)
+  head = array[0..offset-1]
+  tail = array[offset..-1]
+  return tail + head
+end
+
+# step 3 in further optimization(TBD). re-insert the newly rotated values
+# back into the original matrix.
+
 def get_ring(matrix, rows, cols, depth)
   min_row, max_row, min_col, max_col = get_bounds(rows, cols, depth)
 
@@ -64,7 +79,7 @@ num_rings = [rows, cols].min / 2
   # no need to spin any ring redundantly.
   real_rotations = rotations % ring.length
 
-  (1..rotations).each { |rotation|
+  (1..real_rotations).each { |rotation|
     rotate_coord_list(matrix, ring)
   }
 }
